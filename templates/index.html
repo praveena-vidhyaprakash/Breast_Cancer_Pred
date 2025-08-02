@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breast Cancer SVM Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 4px 0 12px 0;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        h2 {
+            color: green;
+        }
+
+        h3 {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Breast Cancer Prediction (SVM)</h1>
+
+    {% if result %}
+        <h2>Prediction: {{ result }}</h2>
+    {% elif error %}
+        <h3>Error: {{ error }}</h3>
+    {% endif %}
+
+    <form action="/predict" method="post">
+        {% for feature in features %}
+            <label for="{{ feature }}">{{ feature }}:</label><br>
+            <input type="text" id="{{ feature }}" name="{{ feature }}" required><br>
+        {% endfor %}
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html>
